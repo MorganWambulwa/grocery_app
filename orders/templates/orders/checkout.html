@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <h3 class="mb-3">Order Summary</h3>
+        <ul class="list-group mb-3">
+            {% for item in cart %}
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                    <h6 class="my-0">{{ item.product.name }}</h6>
+                    <small class="text-muted">Qty: {{ item.quantity }}</small>
+                </div>
+                <span class="text-muted">${{ item.total_price }}</span>
+            </li>
+            {% endfor %}
+            <li class="list-group-item d-flex justify-content-between bg-light">
+                <span class="fw-bold">Total (USD)</span>
+                <span class="fw-bold text-success">${{ cart.get_total_price }}</span>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-6">
+        <h3 class="mb-3">Shipping Details</h3>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="mb-3">
+                <label class="form-label">{{ field.label }}</label>
+                {{ field }}
+            </div>
+            {% endfor %}
+            <button class="btn btn-success-custom w-100 btn-lg" type="submit">Place Order</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
