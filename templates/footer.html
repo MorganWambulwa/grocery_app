@@ -24,7 +24,6 @@
                 <ul class="list-unstyled small">
                     {% if user.is_authenticated %}
                     <li><a href="{% url 'profile' %}" class="text-white-50 text-decoration-none">My Profile</a></li>
-                    <li><a href="{% url 'logout' %}" class="text-white-50 text-decoration-none">Logout</a></li>
                     {% else %}
                     <li><a href="{% url 'login' %}" class="text-white-50 text-decoration-none">Login</a></li>
                     <li><a href="{% url 'register' %}" class="text-white-50 text-decoration-none">Register</a></li>
